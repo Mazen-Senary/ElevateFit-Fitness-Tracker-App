@@ -1,3 +1,5 @@
+import 'package:elevate_fit/screens/login_screen.dart';
+import 'package:elevate_fit/screens/signup_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,21 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text("Hello fathy",style: TextStyle(
-                fontSize: 60,
-                color: Colors.red
-              ),)
-            ],
-          ),
-        ),
-
-      ),
+      debugShowCheckedModeBanner: false,
+      home:SignupScreen()
     );
   }
 }
