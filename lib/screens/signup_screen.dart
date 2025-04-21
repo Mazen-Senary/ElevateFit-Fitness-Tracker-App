@@ -1,3 +1,4 @@
+import 'package:elevate_fit/ViewModel/SignupViewModel.dart';
 import 'package:elevate_fit/Widgets/custom_ElevatedButton.dart';
 import 'package:elevate_fit/Widgets/custom_TextField.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SignupViewModel signupViewModel = SignupViewModel();
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -48,10 +50,24 @@ class SignupScreen extends StatelessWidget {
                 SizedBox(height: 20,),
                 CustomTextfield(hint: "Password", label: "Password", icon: Icon(Icons.password_outlined),iconColor: Colors.white,ispassword: true,),
                 SizedBox(height: 20,),
-                CustomElevatedbutton(onPressed: (){}, text: "Sign up",color: Color(0xff008080),)
-          
-          
-          
+                CustomElevatedbutton(onPressed: (){}, text: "Sign up",color: Color(0xff008080),),
+                SizedBox(height: 20,),
+                Text("Already have an account?",style: TextStyle(color: Colors.white,fontSize: 16),),
+                TextButton(
+                  onPressed: () {
+                    signupViewModel.navigation(context, 'login');
+                  },
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,         // Text color
+                    backgroundColor: Colors.transparent,   // Button background
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    textStyle: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  child: Text( 'Login'),
+                )
               ],
             ),
           
