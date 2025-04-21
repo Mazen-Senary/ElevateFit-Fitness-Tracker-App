@@ -1,3 +1,4 @@
+import 'package:elevate_fit/screens/home_screen.dart';
 import 'package:elevate_fit/screens/login_screen.dart';
 import 'package:elevate_fit/screens/signup_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,10 +14,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'login',  // Initial route
+      initialRoute: 'home',  // Initial route
       routes: {
         'login': (context) =>  LoginScreen(),
         'signup': (context) => const SignupScreen(),
+        'home': (context) =>  HomeScreen(),
       },
       //home:LoginScreen()
     );

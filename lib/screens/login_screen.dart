@@ -54,6 +54,7 @@ class LoginScreen extends StatelessWidget {
                     onPressed:  () {
                       if(_formKey.currentState!.validate())
                     loginViewModel.checkFields(emailcontroller, passwordcontroller, context);
+                      loginViewModel.navigation(context, 'home');
                     },
                     text: "Login",
                     color: Color(0xff008080),
