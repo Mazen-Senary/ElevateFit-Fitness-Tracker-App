@@ -1,3 +1,4 @@
+import 'package:elevate_fit/screens/dashboard_screen.dart';
 import 'package:elevate_fit/screens/home_screen.dart';
 import 'package:elevate_fit/screens/login_screen.dart';
 import 'package:elevate_fit/screens/signup_screen.dart';
@@ -14,11 +15,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'home',  // Initial route
+     // home: LoginScreen(),
+      initialRoute: 'login',  // Initial route
       routes: {
         'login': (context) =>  LoginScreen(),
         'signup': (context) => const SignupScreen(),
         'home': (context) =>  HomeScreen(),
+        'homescreen':(context) =>  DashboardScreen(),
       },
       //home:LoginScreen()
     );

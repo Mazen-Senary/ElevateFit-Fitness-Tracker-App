@@ -17,10 +17,9 @@ class LoginViewModel {
     if (v.length < 8)                return 'Password too short';
     return null;
   }
-  void checkFields(TextEditingController email, TextEditingController pass, BuildContext context) {
-    // Check if the email contains @ and . and password is at least 8 characters
+  bool checkFields(TextEditingController email, TextEditingController pass, BuildContext context)
+  {
     if (email.text.contains("@") && email.text.contains(".") && pass.text.length >= 8) {
-      // Show success message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Login Successful'),
@@ -28,7 +27,7 @@ class LoginViewModel {
           duration: Duration(seconds: 1),
         ),
       );
-      navigation(context, 'signup');
+      return true;
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -37,6 +36,10 @@ class LoginViewModel {
           duration: Duration(seconds: 1),
         ),
       );
+      return false;
     }
   }
+
 }
+
+

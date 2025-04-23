@@ -1,3 +1,4 @@
+import 'package:elevate_fit/Widgets/custom_app_bar.dart';
 import 'package:elevate_fit/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -18,19 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Center(child: Text("Home",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)),
         backgroundColor: Colors.transparent,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color(0xFF1E3C72),
-                Color(0xff008080),
-                Color(0xFF121212),
-              ],
-            ),
-          ),
-        ),
+        flexibleSpace: CustomAppBar(),
           leading: IconButton(onPressed: (){}, icon: Icon(Icons.menu,color: Colors.white,size: 30,)),
           actions: [
             IconButton(onPressed: (){}, icon: Icon(Icons.person),color: Colors.white,),
@@ -43,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
            });
         },
           currentIndex: myIndex,
-        backgroundColor: Colors.blue.shade300,
+          backgroundColor: Colors.blue.shade300,
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.black,
           items: [

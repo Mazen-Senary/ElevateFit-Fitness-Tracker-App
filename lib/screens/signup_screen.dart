@@ -1,6 +1,6 @@
 import 'package:elevate_fit/ViewModel/SignupViewModel.dart';
-import 'package:elevate_fit/Widgets/custom_ElevatedButton.dart';
-import 'package:elevate_fit/Widgets/custom_TextField.dart';
+import 'package:elevate_fit/Widgets/custom_elevated_button.dart';
+import 'package:elevate_fit/Widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatelessWidget {
