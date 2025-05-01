@@ -1,4 +1,5 @@
 import 'package:elevate_fit/Widgets/custom_FAB.dart';
+import 'package:elevate_fit/Widgets/custom_drawer_widgets.dart';
 import 'package:elevate_fit/Widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/flutter_percent_indicator.dart';
@@ -40,13 +41,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
             label: "Workouts",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
+            icon: Icon(Icons.local_fire_department_outlined),
+            label: "calories counter",
           ),
         ],
       ),
       backgroundColor: Color(0xFF141313),
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Colors.transparent,
         flexibleSpace: CustomAppBar(),
         title: Center(
@@ -55,10 +57,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             style: TextStyle(fontSize: 30, color: Colors.white),
           ),
         ),
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.menu, color: Colors.white, size: 35),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {},
+        //   icon: Icon(Icons.menu, color: Colors.white, size: 35),
+        // ),
         actions: [
           IconButton(
             onPressed: () {},
@@ -70,6 +72,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           child: Container(color: Colors.grey, height: 1.0),
         ),
       ),
+      drawer:Drawertap(),
       body: SingleChildScrollView(
         child: Container(
           color: Colors.transparent,
