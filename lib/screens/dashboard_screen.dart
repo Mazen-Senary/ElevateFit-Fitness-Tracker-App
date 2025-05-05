@@ -1,6 +1,8 @@
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elevate_fit/Widgets/custom_FAB.dart';
 import 'package:elevate_fit/Widgets/custom_drawer_widgets.dart';
-import 'package:elevate_fit/Widgets/custom_elevated_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/flutter_percent_indicator.dart';
 import '../Widgets/custom_app_bar.dart';
@@ -11,41 +13,36 @@ class DashboardScreen extends StatefulWidget {
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
-// feat a
+
 class _DashboardScreenState extends State<DashboardScreen> {
   double percentage = 1.0;
   int waterCounter = 0;
   int waterTarget = 8;
   bool showFAB = false;
   Color progressColor = Colors.red;
-  int myIndex = 0;
-  Text? text;
+  String userName = "";
+  @override
+  void initState() {
+    super.initState();
+    FetchUsername();
+  }
+
+  Future<void> FetchUsername() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      final userData = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+      if (userData.exists) {
+        setState(() {
+          userName = userData.data()?['firstName'] ?? 'User';
+        });
+      }
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (index) {
-          setState(() {
-            myIndex = index;
-          });
-        },
-        currentIndex: myIndex,
-        backgroundColor: Colors.blue.shade300,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.black,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.fitness_center),
-            label: "Workouts",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_fire_department_outlined),
-            label: "calories counter",
-          ),
-        ],
-      ),
       backgroundColor: Color(0xFF141313),
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
@@ -57,10 +54,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             style: TextStyle(fontSize: 30, color: Colors.white),
           ),
         ),
-        // leading: IconButton(
-        //   onPressed: () {},
-        //   icon: Icon(Icons.menu, color: Colors.white, size: 35),
-        // ),
         actions: [
           IconButton(
             onPressed: () {},
@@ -72,7 +65,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           child: Container(color: Colors.grey, height: 1.0),
         ),
       ),
-      drawer:Drawertap(),
+      drawer: Drawertap(),
       body: SingleChildScrollView(
         child: Container(
           color: Colors.transparent,
@@ -83,7 +76,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  "Welcome, User",
+                  "Welcome, $userName",
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
               ),
@@ -97,16 +90,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     lineWidth: 20,
                     backgroundColor: Colors.white,
                     percent: percentage,
-                    center:
-                        showFAB
-                            ? Text(
-                              '${(percentage * 100).toStringAsFixed(1)} %',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
-                            )
-                            : const SizedBox.shrink(),
+                    center: showFAB
+                        ? Text(
+                      '${(percentage * 100).toStringAsFixed(1)} %',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    )
+                        : const SizedBox.shrink(),
                   ),
                 ],
               ),
@@ -140,20 +132,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               size: 40,
                             ),
                           ),
-                          Center(
-                            child: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  progressColor = Colors.green;
-                                  showFAB = false;
-                                  percentage = 1.0;
-                                });
-                              },
-                              icon: Icon(
-                                Icons.snowshoeing_sharp,
-                                color: Colors.green,
-                                size: 35,
-                              ),
+                          IconButton(
+                            onPressed: () {
+                              setState(() {
+                                progressColor = Colors.green;
+                                showFAB = false;
+                                percentage = 1.0;
+                              });
+                            },
+                            icon: Icon(
+                              Icons.snowshoeing_sharp,
+                              color: Colors.green,
+                              size: 35,
                             ),
                           ),
                           IconButton(
@@ -161,7 +151,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               setState(() {
                                 progressColor = Colors.blue;
                                 showFAB = true;
-                                percentage = (waterCounter / 8).clamp(0.0, 1.0);
+                                percentage = (waterCounter / waterTarget).clamp(0.0, 1.0);
                               });
                             },
                             icon: Icon(
@@ -178,15 +168,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         incOnPressed: () {
                           setState(() {
                             waterCounter++;
-                            percentage = (waterCounter / 8).clamp(0.0, 1.0);
-                            Colors.blue;
-                            Colors.blue.shade100;
+                            percentage = (waterCounter / waterTarget).clamp(0.0, 1.0);
                           });
                         },
                         decOnPressed: () {
                           setState(() {
                             if (waterCounter > 0) waterCounter--;
-                            percentage = (waterCounter / 8).clamp(0.0, 1.0);
+                            percentage = (waterCounter / waterTarget).clamp(0.0, 1.0);
                           });
                         },
                         waterCounter: waterCounter,

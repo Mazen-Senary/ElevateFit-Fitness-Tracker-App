@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "723108694817",
+    "project_id": "elevate-fit",
+    "storage_bucket": "elevate-fit.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723108694817:android:57db4057b74461f0740c60",
+        "android_client_info": {
+          "package_name": "com.example.elevate_fit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIAJeB5N2ZaBh2zO4KEGKVS5kcuof_etg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

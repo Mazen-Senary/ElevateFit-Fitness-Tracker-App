@@ -4,7 +4,7 @@ import 'package:elevate_fit/Widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -81,16 +81,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 20),
                   CustomElevatedbutton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        bool success = loginViewModel.checkFields(
-                          emailcontroller,
-                          passwordcontroller,
+                        await loginViewModel.signIn(
                           context,
+                          emailcontroller.text.trim(),
+                          passwordcontroller.text.trim(),
                         );
-                        if (success) {
-                          loginViewModel.navigation(context, 'homescreen');
-                        }
                       }
                     },
                     text: "Login",
@@ -125,4 +122,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-//

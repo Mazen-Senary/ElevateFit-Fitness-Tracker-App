@@ -62,6 +62,7 @@ class CustomTextfield extends StatelessWidget {
           hintText: hint,
           hintStyle: TextStyle(color: Colors.white),
         ),
+
       ),
     );
   }

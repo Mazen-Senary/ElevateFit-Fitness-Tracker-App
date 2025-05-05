@@ -1,13 +1,59 @@
+//
+// import 'package:elevate_fit/screens/dashboard_screen.dart';
+// import 'package:elevate_fit/screens/home_screen.dart';
+// import 'package:elevate_fit/screens/login_screen.dart';
+// import 'package:elevate_fit/screens/signup_screen.dart';
+// import 'package:elevate_fit/screens/splash_screen.dart';
+// import 'package:elevate_fit/screens/workout_screen.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
+// import 'package:firebase_core/firebase_core.dart';
+//
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//
+//   runApp(MyApp());
+// }
+// class MyApp extends StatelessWidget {
+//
+//   const MyApp({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//      //home:WorkoutsPage()
+//      // home: FirebaseAuth.instance.currentUser == null? LoginScreen():HomeScreen(),
+//      //  routes: {
+//      //    'login': (context) =>  LoginScreen(),
+//      //    'signup': (context) => const SignupScreen(),
+//      //    'homebar': (context) =>  HomeScreen(),
+//      //    'homescreen':(context) =>  DashboardScreen(),
+//      //  },
+//       home:SplashScreen()
+//     );
+//   }
+// }
 import 'package:elevate_fit/screens/dashboard_screen.dart';
 import 'package:elevate_fit/screens/home_screen.dart';
 import 'package:elevate_fit/screens/login_screen.dart';
 import 'package:elevate_fit/screens/signup_screen.dart';
+import 'package:elevate_fit/screens/splash_screen.dart';
+import 'package:elevate_fit/screens/workout_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main(){
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -15,15 +61,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-     // home: LoginScreen(),
-      initialRoute: 'login',  // Initial route
+      home: FirebaseAuth.instance.currentUser == null
+          ? const SplashScreen()
+          : const HomeScreen(),
       routes: {
-        'login': (context) =>  LoginScreen(),
+        'login': (context) => const LoginScreen(),
         'signup': (context) => const SignupScreen(),
-        'home': (context) =>  HomeScreen(),
-        'homescreen':(context) =>  DashboardScreen(),
+        'homebar': (context) => const HomeScreen(),
+        'homescreen': (context) => const DashboardScreen(),
       },
-      //home:LoginScreen()
     );
   }
 }
+
