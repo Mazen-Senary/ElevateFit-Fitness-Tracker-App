@@ -16,6 +16,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final phoneController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final usernameController=TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -73,6 +74,15 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   SizedBox(height: 20),
                   CustomTextfield(
+                    hint: "Enter your Username",
+                    label: "username",
+                    icon: Icon(Icons.abc),
+                    iconColor: Colors.white,
+                    controller: usernameController,
+                    validator: signupViewModel.validateName,
+                  ),
+                  SizedBox(height: 20),
+                  CustomTextfield(
                     hint: "Email",
                     label: "Email",
                     icon: Icon(Icons.email),
@@ -104,11 +114,14 @@ class _SignupScreenState extends State<SignupScreen> {
                   CustomElevatedbutton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        String email = emailController.text;
-                        String password = passwordController.text;
-                        String firstName = nameController.text;
-                        signupViewModel.signUp(context, email, password,firstName);
+                        signupViewModel.signUp(context,emailController.text, passwordController.text, nameController.text,  phoneController.text,
+                          usernameController.text,);
                       }
+                      //   String email = emailController.text;
+                      //   String password = passwordController.text;
+                      //   String firstName = nameController.text;
+                      //   signupViewModel.signUp(context, email, password,firstName);
+                      // }
                     },
                     text: "Sign up",
                     color: Color(0xff008080),

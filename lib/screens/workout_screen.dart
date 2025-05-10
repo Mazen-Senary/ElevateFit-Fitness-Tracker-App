@@ -1,4 +1,5 @@
 import 'package:elevate_fit/Widgets/custom_app_bar.dart';
+import 'package:elevate_fit/Widgets/custom_drawer_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -55,7 +56,7 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
         title: Center(
           child: Text(
             "Workouts",
-            style: GoogleFonts.fugazOne(fontSize: 30, color: Colors.white),
+            style: GoogleFonts.montserrat(fontSize: 30, color: Colors.white),
           ),
         ),
         actions: [
@@ -69,6 +70,7 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
           child: Container(color: Colors.grey, height: 1.0),
         ),
       ),
+      drawer: Drawertap(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: workouts.isEmpty

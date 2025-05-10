@@ -25,10 +25,14 @@ class Drawertap extends StatelessWidget {
               ),
             )),
             ListTile(
-              leading: Icon(Icons.person,size: 35,color: Colors.white,),
-              title: Text("Profile",
-                  style: GoogleFonts.montserrat(fontSize: 25,color: Colors.white,)
+              leading: Icon(Icons.person, size: 35, color: Colors.white),
+              title: Text(
+                "Profile",
+                style: GoogleFonts.montserrat(fontSize: 25, color: Colors.white),
               ),
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/profile');
+              },
             ),
             ListTile(
               leading: Icon(Icons.track_changes,size: 35,color: Colors.white,),

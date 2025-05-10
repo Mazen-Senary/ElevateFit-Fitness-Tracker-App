@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignupViewModel {
-  Future<void> signUp(BuildContext context, String email, String password,String firstName) async {
+  Future<void> signUp(BuildContext context, String email, String password,String firstName,String phone,String username) async {
     try {
       final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
@@ -15,9 +15,11 @@ class SignupViewModel {
         await FirebaseFirestore.instance.collection('users').doc(uid).set({
           'firstName': firstName,
           'email': email,
+          'phone': phone,
+          'username': username,
         });
       }
-      print("sign uo");
+      print("sign up");
       Navigator.pushReplacementNamed(context, 'login');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
